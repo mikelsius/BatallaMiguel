@@ -1,5 +1,5 @@
 /**
- * 
+ *
  */
 package net.miguel;
 import java.util.ArrayList;
@@ -10,31 +10,31 @@ import java.util.List;
  *
  */
 public class CampDeBatalla {
-	/**
-	 * Araylist d'exercits.
-	 */
-	private List<Exercit> exercits;
+    /**
+     * Araylist d'exercits.
+     */
+    private List<Exercit> exercits;
     private static final int FILESTERRENY = 6;
     private int filesTerreny = 0;
-    private Principal pantalla;
-	/**
-	 * 
-	 */
-	public CampDeBatalla(final Principal pant) {
-		pantalla = pant;
-		filesTerreny = FILESTERRENY;
-		exercits = new ArrayList<Exercit>();
-	}
-	public void afegirExercit(final Exercit ex,
+    public Principal pantalla;
+    /**
+     *
+     */
+    public CampDeBatalla(final Principal pant) {
+        pantalla = pant;
+        filesTerreny = FILESTERRENY;
+        exercits = new ArrayList<Exercit>();
+    }
+    public void afegirExercit(final Exercit ex,
             final int posicioi, final int posiciof){
-		if (ex != null) {
+        if (ex != null) {
             exercits.add(ex);
             ex.setPosicio(posicioi, posiciof);
-            ex.soldatsFormacioInicial(filesTerreny);
+            ex.soldatsFormacio(filesTerreny);
             pintaImatges(exercits.size() - 1);
         }
-	}
-	private void pintaImatges(final int numExercit) {
+    }
+    private void pintaImatges(final int numExercit) {
 
         List<Soldat> imatges = exercits.get(numExercit).getSoldats();
         for (Soldat un : imatges) {
