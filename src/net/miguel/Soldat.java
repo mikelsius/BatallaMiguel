@@ -3,6 +3,8 @@
  */
 package net.miguel;
 
+import acm.graphics.GImage;
+
 /**
  * @author mikel
  *
@@ -10,9 +12,24 @@ package net.miguel;
 public class Soldat {
 
     /**
-     *
+     * GImage de soldat.
      */
-    public Soldat() {
+    private GImage imatge;
+    /**
+     * Constructor.
+     */
+    public Soldat(String im) {
+        imatge = new GImage(im);
+    }
+    /**
+     *
+     * @return imatge de soldat.
+     */
+    public GImage getGImage(){
+        return imatge;
+    }
+    public void posiciona(int i, int j) {
+        i
 
     }
 
