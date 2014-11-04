@@ -29,8 +29,6 @@ public class Soldat {
         return imatge;
     }
     public void posiciona(int i, int j) {
-        i
-
+        imatge.setLocation(i,j);
     }
-
 }
