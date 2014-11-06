@@ -78,4 +78,20 @@ public class Exercit {
                     / Math.abs(PosicioFinal - PosicioInicial);
         //Retorna 1 o -1, -1 el té l'exercit de la DRETA.
     }
+    public final int getNumeroDeSoldats() {
+        return soldats.size();
+    }
+    public final void setFilesExercit(final int files) {
+        this.filesExercit = files;
+    }
+    public final void moure (){
+        for (int i = 0; i < soldats.size(); i++){
+        	int esmouen = 0;
+            esmouen += soldats.get(i).moure(calculaDireccio());
+            
+            if (esmouen == 0){ //Llavors tots estan parats, osigui han arribat al final.
+            	
+            }
+        }
+    }
 }

@@ -33,7 +33,7 @@ public class Principal extends GraphicsProgram {
         exercit = creaExercit("Cartmans", NUMSOLDATS,"SoldatCartman.jpg");
         campBatalla.afegirExercit(exercit,getWidth(),POSICIOINICIAL);
 
-        //campBatalla.batalla();
+        campBatalla.batalla();
 
 
     }

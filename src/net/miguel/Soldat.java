@@ -15,6 +15,7 @@ public class Soldat {
      * GImage de soldat.
      */
     private GImage imatge;
+    private static final int VELOCITAT= 10;
     /**
      * Constructor.
      */
@@ -30,5 +31,18 @@ public class Soldat {
     }
     public void posiciona(int i, int j) {
         imatge.setLocation(i,j);
+    }
+    public int moure(int direccio){
+        if (direccio == 1 && (imatge.getX() + VELOCITAT) > 1200 || direccio == -1 && (imatge.getX() - VELOCITAT) < 10){
+            if (direccio ==1){
+                imatge.setLocation(1100,imatge.getY());
+            }else{
+                imatge.setLocation(100,imatge.getY());
+            }
+            return 0;
+        }else{
+            imatge.setLocation(direccio * VELOCITAT + imatge.getX(),imatge.getY());
+            return 1;
+        }
     }
 }
