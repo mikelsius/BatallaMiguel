@@ -26,6 +26,7 @@ public class Exercit {
     private int filesExercit;
     private Random rnd;
     private int midaCampBatalla;
+    public int esmouen;
 
     public Exercit(final String nombre) {
         nom = nombre;
@@ -84,14 +85,16 @@ public class Exercit {
     public final void setFilesExercit(final int files) {
         this.filesExercit = files;
     }
-    public final void moure (){
+    public final int moure(){
+        esmouen = 0;
         for (int i = 0; i < soldats.size(); i++){
-        	int esmouen = 0;
             esmouen += soldats.get(i).moure(calculaDireccio());
-            
             if (esmouen == 0){ //Llavors tots estan parats, osigui han arribat al final.
-            	
             }
         }
+        return esmouen;
+    }
+    public final int getEsMouen(){
+        return esmouen;
     }
 }

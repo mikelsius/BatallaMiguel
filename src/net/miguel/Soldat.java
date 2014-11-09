@@ -33,11 +33,11 @@ public class Soldat {
         imatge.setLocation(i,j);
     }
     public int moure(int direccio){
-        if (direccio == 1 && (imatge.getX() + VELOCITAT) > 1200 || direccio == -1 && (imatge.getX() - VELOCITAT) < 10){
+        if (direccio == 1 && (imatge.getX() + VELOCITAT) > 1150 || direccio == -1 && (imatge.getX() - VELOCITAT) < 10){
             if (direccio ==1){
-                imatge.setLocation(1100,imatge.getY());
+                imatge.setLocation(1150,imatge.getY());
             }else{
-                imatge.setLocation(100,imatge.getY());
+                imatge.setLocation(10,imatge.getY());
             }
             return 0;
         }else{

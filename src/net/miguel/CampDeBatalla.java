@@ -46,9 +46,30 @@ public class CampDeBatalla {
         while (exercits.get(0).getNumeroDeSoldats() > 0
                 && exercits.get(1).getNumeroDeSoldats() > 0) {
 
-            exercits.get(0).moure();
-            exercits.get(1).moure();
+            int esmou1 = exercits.get(0).moure();
+            //Despres de moure el exercit hem de mirar si han tocat algun enemic!
+            //exercit.get(0).atacar(exercit.get(1));
             pantalla.pause(TEMPSESPERA);
+            int esmou2 = exercits.get(1).moure();
+            //exercit.get(1).atacar(exercit.get(0));
+            pantalla.pause(TEMPSESPERA);
+            if (esmou1 == 0){ //Cap es mou, ara hem de definir el nou origen i desti.
+                                //i despres recolocarlos.
+                if (exercits.get(0).calculaDireccio() == 1){
+                    exercits.get(0).setPosicio(10,1200);
+                }else{
+                    exercits.get(0).setPosicio(1200,10);
+                }
+                exercits.get(0).soldatsFormacio(filesTerreny);
+            }
+            if (esmou2 == 0){
+                if (exercits.get(1).calculaDireccio() == -1){
+                    exercits.get(1).setPosicio(1200,10);
+                }else{
+                    exercits.get(1).setPosicio(10,1200);
+                }
+                exercits.get(1).soldatsFormacio(filesTerreny);
+            }
 
             // Comprovar si s'han de reduïr les files
             int minim = Math.min(exercits.get(0).getNumeroDeSoldats(),
