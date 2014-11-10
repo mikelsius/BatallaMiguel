@@ -15,7 +15,7 @@ public class CampDeBatalla {
      */
     private List<Exercit> exercits;
     private static final int FILESTERRENY = 6;
-    private static final int TEMPSESPERA = 100;
+    private static final int TEMPSESPERA = 50;
     private int filesTerreny = 0;
     public Principal pantalla;
     /**
@@ -48,11 +48,21 @@ public class CampDeBatalla {
 
             int esmou1 = exercits.get(0).moure();
             //Despres de moure el exercit hem de mirar si han tocat algun enemic!
-            //exercit.get(0).atacar(exercit.get(1));
+            exercits.get(0).atacar(exercits.get(1));
             pantalla.pause(TEMPSESPERA);
             int esmou2 = exercits.get(1).moure();
-            //exercit.get(1).atacar(exercit.get(0));
+            exercits.get(1).atacar(exercits.get(0));
             pantalla.pause(TEMPSESPERA);
+
+            // Comprovar si s'han de reduïr les files
+            int minim = Math.min(exercits.get(0).getNumeroDeSoldats(),
+                                 exercits.get(1).getNumeroDeSoldats());
+
+            if (minim < filesTerreny) {
+                exercits.get(0).setFilesExercit(minim);
+                exercits.get(1).setFilesExercit(minim);
+            }
+
             if (esmou1 == 0){ //Cap es mou, ara hem de definir el nou origen i desti.
                                 //i despres recolocarlos.
                 if (exercits.get(0).calculaDireccio() == 1){
@@ -69,15 +79,6 @@ public class CampDeBatalla {
                     exercits.get(1).setPosicio(10,1200);
                 }
                 exercits.get(1).soldatsFormacio(filesTerreny);
-            }
-
-            // Comprovar si s'han de reduïr les files
-            int minim = Math.min(exercits.get(0).getNumeroDeSoldats(),
-                                 exercits.get(1).getNumeroDeSoldats());
-
-            if (minim < FILESTERRENY) {
-                exercits.get(0).setFilesExercit(minim);
-                exercits.get(1).setFilesExercit(minim);
             }
         }
     }

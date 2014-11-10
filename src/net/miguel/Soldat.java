@@ -3,7 +3,10 @@
  */
 package net.miguel;
 
+import java.util.Random;
+
 import acm.graphics.GImage;
+import acm.graphics.GRectangle;
 
 /**
  * @author mikel
@@ -16,11 +19,13 @@ public class Soldat {
      */
     private GImage imatge;
     private static final int VELOCITAT= 10;
+    private Random rnd;
     /**
      * Constructor.
      */
     public Soldat(String im) {
         imatge = new GImage(im);
+        rnd = new Random();
     }
     /**
      *
@@ -41,8 +46,11 @@ public class Soldat {
             }
             return 0;
         }else{
-            imatge.setLocation(direccio * VELOCITAT + imatge.getX(),imatge.getY());
+            imatge.setLocation(direccio * rnd.nextInt(VELOCITAT) + imatge.getX(),imatge.getY());
             return 1;
         }
+    }
+    public final GRectangle getBounds() {
+        return imatge.getBounds();
     }
 }

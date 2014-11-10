@@ -6,6 +6,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import acm.graphics.GImage;
+import acm.graphics.GRectangle;
+
 
 /**
  * @author mikel
@@ -25,17 +28,11 @@ public class Exercit {
     private int ALTURAFILA = 100;
     private int filesExercit;
     private Random rnd;
-    private int midaCampBatalla;
     public int esmouen;
 
     public Exercit(final String nombre) {
         nom = nombre;
         rnd = new Random();
-    }
-
-    public final void crearExercits() {
-    }
-    public final void colocarSoldats() {
     }
 
     public final void allistarSoldat(final Soldat soldat) {
@@ -89,12 +86,26 @@ public class Exercit {
         esmouen = 0;
         for (int i = 0; i < soldats.size(); i++){
             esmouen += soldats.get(i).moure(calculaDireccio());
-            if (esmouen == 0){ //Llavors tots estan parats, osigui han arribat al final.
-            }
         }
         return esmouen;
     }
     public final int getEsMouen(){
         return esmouen;
+    }
+    public final void atacar(Exercit ex1){
+        for (int i = 0; i < this.soldats.size(); i++){
+            for (int j = 0; j < ex1.soldats.size(); j++){
+
+                GRectangle soldat = soldats.get(i).getBounds();
+                GRectangle enemic = ex1.soldats.get(j).getBounds();
+
+                if (soldat.intersects(enemic)){
+                    //ex1.soldats.remove(j);
+                    GImage imatge = ex1.soldats.get(j).getGImage();
+                    imatge.getParent().remove(imatge);
+                    ex1.soldats.remove(j);
+                }
+            }
+        }
     }
 }
