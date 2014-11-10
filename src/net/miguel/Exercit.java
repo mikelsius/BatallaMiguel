@@ -26,7 +26,7 @@ public class Exercit {
     private int PosicioFinal;
     private int AMPLADAFILA = 80;
     private int ALTURAFILA = 100;
-    private int filesExercit;
+    //private int filesExercit;
     private Random rnd;
     public int esmouen;
 
@@ -48,7 +48,7 @@ public class Exercit {
     }
 
     public final void soldatsFormacio(final int files){
-        filesExercit = files;
+        //filesExercit = files;
         int[] posicioEnLesFiles = new int[files];
         int puntBase = 0;
 
@@ -79,9 +79,9 @@ public class Exercit {
     public final int getNumeroDeSoldats() {
         return soldats.size();
     }
-    public final void setFilesExercit(final int files) {
-        this.filesExercit = files;
-    }
+    //public final void setFilesExercit(final int files) {
+    //    this.filesExercit = files;
+    //}
     public final int moure(){
         esmouen = 0;
         for (int i = 0; i < soldats.size(); i++){
@@ -107,5 +107,8 @@ public class Exercit {
                 }
             }
         }
+    }
+    public final String getNom(){
+        return nom;
     }
 }

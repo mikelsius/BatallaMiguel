@@ -15,7 +15,7 @@ public class CampDeBatalla {
      */
     private List<Exercit> exercits;
     private static final int FILESTERRENY = 6;
-    private static final int TEMPSESPERA = 50;
+    private static final int TEMPSESPERA = 20;
     private int filesTerreny = 0;
     public Principal pantalla;
     /**
@@ -58,10 +58,12 @@ public class CampDeBatalla {
             int minim = Math.min(exercits.get(0).getNumeroDeSoldats(),
                                  exercits.get(1).getNumeroDeSoldats());
 
+            /*
             if (minim < filesTerreny) {
                 exercits.get(0).setFilesExercit(minim);
                 exercits.get(1).setFilesExercit(minim);
             }
+            */
 
             if (esmou1 == 0){ //Cap es mou, ara hem de definir el nou origen i desti.
                                 //i despres recolocarlos.
@@ -70,7 +72,7 @@ public class CampDeBatalla {
                 }else{
                     exercits.get(0).setPosicio(1200,10);
                 }
-                exercits.get(0).soldatsFormacio(filesTerreny);
+                exercits.get(0).soldatsFormacio(minim);
             }
             if (esmou2 == 0){
                 if (exercits.get(1).calculaDireccio() == -1){
@@ -78,8 +80,16 @@ public class CampDeBatalla {
                 }else{
                     exercits.get(1).setPosicio(10,1200);
                 }
-                exercits.get(1).soldatsFormacio(filesTerreny);
+                exercits.get(1).soldatsFormacio(minim);
             }
+        }
+        //Pintem per pantalla el exercit guanyador.
+        if (exercits.get(0).getNumeroDeSoldats() != 0){
+            //no pinta re. no funciona.
+            pantalla.println("Ha guanyat :"+exercits.get(0).getNom());
+
+        }else{
+            pantalla.println("Ha guanyat :"+exercits.get(1).getNom());
         }
     }
 
