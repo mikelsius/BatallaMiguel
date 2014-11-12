@@ -1,5 +1,5 @@
 /**
- *
+ *.
  */
 package net.miguel;
 
@@ -18,12 +18,23 @@ public class Soldat {
      * GImage de soldat.
      */
     private GImage imatge;
-    private static final int VELOCITAT= 10;
+    /**
+     * velocitat del soldat.
+     */
+    private static final int VELOCITAT = 10;
+    /**
+     * Random.
+     */
     private Random rnd;
     /**
-     * Constructor.
+     * pantalla.
      */
-    public Soldat(String im) {
+    private Principal pantalla;
+    /**
+     *
+     * @param im imatge del soldat.
+     */
+    public Soldat(final String im) {
         imatge = new GImage(im);
         rnd = new Random();
     }
@@ -31,25 +42,43 @@ public class Soldat {
      *
      * @return imatge de soldat.
      */
-    public GImage getGImage(){
+    public final GImage getGImage() {
         return imatge;
     }
-    public void posiciona(int i, int j) {
-        imatge.setLocation(i,j);
+    /**
+     *
+     * @param i posicio inicial.
+     * @param j posicio final.
+     */
+    public final void posiciona(final int i, final int j) {
+        imatge.setLocation(i, j);
     }
-    public int moure(int direccio){
-        if (direccio == 1 && (imatge.getX() + VELOCITAT) > 1150 || direccio == -1 && (imatge.getX() - VELOCITAT) < 10){
-            if (direccio ==1){
-                imatge.setLocation(1150,imatge.getY());
-            }else{
-                imatge.setLocation(10,imatge.getY());
+    /**
+     *
+     * @param direccio a moure el soldat.
+     * @return si es mou o no.
+     */
+    public final int moure(final int direccio) {
+        if (direccio == 1 && (imatge.getX() + VELOCITAT + imatge.getWidth())
+                > pantalla.getAmplada() || direccio == -1 && (imatge.getX()
+                        - VELOCITAT) < pantalla.getPosInicial()) {
+            if (direccio == 1) {
+                imatge.setLocation(pantalla.getAmplada()
+                        - imatge.getWidth(), imatge.getY());
+            } else {
+                imatge.setLocation(pantalla.getPosInicial(), imatge.getY());
             }
             return 0;
-        }else{
-            imatge.setLocation(direccio * rnd.nextInt(VELOCITAT) + imatge.getX(),imatge.getY());
+        } else {
+            imatge.setLocation(direccio * rnd.nextInt(VELOCITAT)
+                    + imatge.getX(), imatge.getY());
             return 1;
         }
     }
+    /**
+     *
+     * @return el cuadrat que ocupa.
+     */
     public final GRectangle getBounds() {
         return imatge.getBounds();
     }

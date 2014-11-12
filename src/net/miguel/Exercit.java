@@ -1,8 +1,9 @@
 /**
- *
+ *.
  */
 package net.miguel;
 import java.util.ArrayList;
+
 import java.util.List;
 import java.util.Random;
 
@@ -15,91 +16,145 @@ import acm.graphics.GRectangle;
  *
  */
 public class Exercit {
-
-
-    ArrayList <Soldat> soldats = new ArrayList <Soldat>();
+    /**
+     * Arraylist de soldats.
+     */
+    private ArrayList <Soldat> soldats = new ArrayList <Soldat>();
     /**
      * Nom de l'exercit.
      */
     private String nom;
-    private int PosicioInicial;
-    private int PosicioFinal;
-    private int AMPLADAFILA = 80;
-    private int ALTURAFILA = 100;
+    /**
+     * posicio inicial.
+     */
+    private int posicioInicial;
+    /**
+     *  posicio final.
+     */
+    private int posicioFinal;
+    /**
+     * amplada entre soldats en cada fila.
+     */
+    private static final int AMPLADAFILA = 60;
+    /**
+     * altura per fila.
+     */
+    private static final int ALTURAFILA = 100;
     //private int filesExercit;
+    /**
+     * Random.
+     */
     private Random rnd;
-    public int esmouen;
-
+    /**
+     * num de quants es mouen.
+     */
+    private int esmouen;
+    /**
+     *
+     * @param nombre del exercit.
+     */
     public Exercit(final String nombre) {
         nom = nombre;
         rnd = new Random();
     }
-
+    /**
+     *
+     * @param soldat per allistar.
+     */
     public final void allistarSoldat(final Soldat soldat) {
         if (soldat != null) {
             soldats.add(soldat);
         }
     }
+    /**
+     *
+     * @param posicioi posicio inicial
+     * @param posiciof posicio final
+     */
     public final void setPosicio(final int posicioi,
             final int posiciof) {
-        PosicioInicial = posicioi;
-        PosicioFinal = posiciof;
-        //soldatsDefinirDestiX();
+        posicioInicial = posicioi;
+        posicioFinal = posiciof;
     }
-
-    public final void soldatsFormacio(final int files){
+    /**
+     *
+     * @param files que tindra la formacio.
+     */
+    public final void soldatsFormacio(final int files) {
         //filesExercit = files;
         int[] posicioEnLesFiles = new int[files];
         int puntBase = 0;
 
         int direccio = calculaDireccio();
         if (direccio < 0) {
-            puntBase = 1200 - AMPLADAFILA;
+            puntBase = posicioFinal - AMPLADAFILA;
         }
         for (Soldat s: soldats) {
             int fila = rnd.nextInt(files);
             s.posiciona(puntBase
                     + direccio * posicioEnLesFiles[fila] * AMPLADAFILA,
                     fila * ALTURAFILA);
+            //s.setDestix(puntBase);
             posicioEnLesFiles[fila]++;
         }
     }
+    /**
+     *
+     * @return llista de soldats.
+     */
     public final List<Soldat> getSoldats() {
         return soldats;
     }
+    /**
+     *
+     * @return direccio del exercit
+     */
     public final int calculaDireccio() {
 
-        if (PosicioInicial - PosicioFinal == 0) {
+        if (posicioInicial - posicioFinal == 0) {
             return 0;
         }
-        return (PosicioInicial - PosicioFinal)
-                    / Math.abs(PosicioFinal - PosicioInicial);
+        return (posicioInicial - posicioFinal)
+                    / Math.abs(posicioFinal - posicioInicial);
         //Retorna 1 o -1, -1 el té l'exercit de la DRETA.
     }
+    /**
+     *
+     * @return soldats vius.
+     */
     public final int getNumeroDeSoldats() {
         return soldats.size();
     }
-    //public final void setFilesExercit(final int files) {
-    //    this.filesExercit = files;
-    //}
-    public final int moure(){
+    /**
+     *
+     * @return total de soldats que es mouen.
+     */
+    public final int moure() {
         esmouen = 0;
-        for (int i = 0; i < soldats.size(); i++){
+        for (int i = 0; i < soldats.size(); i++) {
             esmouen += soldats.get(i).moure(calculaDireccio());
         }
         return esmouen;
     }
-    public final int getEsMouen(){
+    /**
+     *
+     * @return retorna total de soldats que s'han mogut.
+     */
+    public final int getEsMouen() {
         return esmouen;
     }
-    public final void atacar(Exercit ex1){
-        for (int i = 0; i < this.soldats.size(); i++){
-            for (int j = 0; j < ex1.soldats.size(); j++){
+    /**
+     *
+     * @param ex1 exercit enemic.
+     */
+    public final void atacar(final Exercit ex1) {
+        for (int i = 0; i < this.soldats.size(); i++) {
+            for (int j = 0; j < ex1.soldats.size(); j++) {
 
                 GRectangle soldat = soldats.get(i).getBounds();
                 GRectangle enemic = ex1.soldats.get(j).getBounds();
 
-                if (soldat.intersects(enemic)){
+                if (soldat.intersects(enemic)) {
                     //ex1.soldats.remove(j);
                     GImage imatge = ex1.soldats.get(j).getGImage();
                     imatge.getParent().remove(imatge);
@@ -108,7 +163,11 @@ public class Exercit {
             }
         }
     }
-    public final String getNom(){
+    /**
+     *
+     * @return nom del exercit.
+     */
+    public final String getNom() {
         return nom;
     }
 }
