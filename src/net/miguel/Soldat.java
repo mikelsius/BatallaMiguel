@@ -27,16 +27,13 @@ public class Soldat {
      */
     private Random rnd;
     /**
-     * pantalla.
-     */
-    private Principal pantalla;
-    /**
      *
      * @param im imatge del soldat.
      */
     public Soldat(final String im) {
         imatge = new GImage(im);
         rnd = new Random();
+
     }
     /**
      *
@@ -55,18 +52,19 @@ public class Soldat {
     }
     /**
      *
+     * @param desti on vull arribar
      * @param direccio a moure el soldat.
      * @return si es mou o no.
      */
-    public final int moure(final int direccio) {
+    public final int moure(final int desti, final int direccio) {
         if (direccio == 1 && (imatge.getX() + VELOCITAT + imatge.getWidth())
-                > pantalla.getAmplada() || direccio == -1 && (imatge.getX()
-                        - VELOCITAT) < pantalla.getPosInicial()) {
+                > desti || direccio == -1 && (imatge.getX()
+                        - VELOCITAT) < desti) {
             if (direccio == 1) {
-                imatge.setLocation(pantalla.getAmplada()
+                imatge.setLocation(desti
                         - imatge.getWidth(), imatge.getY());
             } else {
-                imatge.setLocation(pantalla.getPosInicial(), imatge.getY());
+                imatge.setLocation(desti, imatge.getY());
             }
             return 0;
         } else {

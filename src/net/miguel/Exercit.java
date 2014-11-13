@@ -119,6 +119,18 @@ public class Exercit {
         //Retorna 1 o -1, -1 el té l'exercit de la DRETA.
     }
     /**
+     * calculem el desti de soldat.
+     */
+    public final int calculaDesti(){
+        int direccio = calculaDireccio();
+        if (direccio == 1) {
+            return 1200;
+        } else {
+            return 0;
+        }
+
+    }
+    /**
      *
      * @return soldats vius.
      */
@@ -132,7 +144,7 @@ public class Exercit {
     public final int moure() {
         esmouen = 0;
         for (int i = 0; i < soldats.size(); i++) {
-            esmouen += soldats.get(i).moure(calculaDireccio());
+            esmouen += soldats.get(i).moure(calculaDesti(), calculaDireccio());
         }
         return esmouen;
     }
