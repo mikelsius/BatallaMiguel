@@ -124,7 +124,7 @@ public class Exercit {
     public final int calculaDesti(){
         int direccio = calculaDireccio();
         if (direccio == 1) {
-            return 1200;
+            return 1200; //El ample de la pantalla.
         } else {
             return 0;
         }
@@ -167,7 +167,6 @@ public class Exercit {
                 GRectangle enemic = ex1.soldats.get(j).getBounds();
 
                 if (soldat.intersects(enemic)) {
-                    //ex1.soldats.remove(j);
                     GImage imatge = ex1.soldats.get(j).getGImage();
                     imatge.getParent().remove(imatge);
                     ex1.soldats.remove(j);
